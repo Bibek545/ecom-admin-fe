@@ -2,6 +2,8 @@ import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import DefaultLayout from "../layout/DefaultLayout.jsx";
 import { HomePage } from "../pages/home/HomePage.jsx";
+import SignUpPage from "../pages/auth/SignUpPage.jsx";
+import LoginPage from "../pages/auth/LoginPage.jsx";
 
 
  const AppRoutes =() => {
@@ -10,6 +12,8 @@ import { HomePage } from "../pages/home/HomePage.jsx";
             {
                 <Route path ='/' element = {<DefaultLayout/>}>
                     <Route index element = {<HomePage/>}></Route>
+                    <Route path="signup" element = {<SignUpPage/>}></Route>
+                    <Route path="login" element = {<LoginPage/>}></Route>
                 </Route>
             }
         </Routes>
