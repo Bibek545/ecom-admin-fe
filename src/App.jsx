@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import DefaultLayout from './layout/DefaultLayout'
 import './App.css'
+import AppRoutes from './routes/AppRoutes'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-  
-      <h1>Rajat Malla</h1>
-  
+      <AppRoutes/>
     </>
   )
 }
