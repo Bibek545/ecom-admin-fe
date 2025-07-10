@@ -1,6 +1,8 @@
 import DefaultLayout from './layout/DefaultLayout'
 import './App.css'
 import AppRoutes from './routes/AppRoutes'
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
 

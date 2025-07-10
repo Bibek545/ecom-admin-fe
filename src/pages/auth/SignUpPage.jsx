@@ -5,6 +5,9 @@ import { signUpInputes } from "../../assets/customInputs/userSignUpInputs.js";
 import CustomInput from "../../customInput/CustomInput.jsx";
 import { useForm } from "../../hooks/useForm.js";
 import { signUpNewUserApi } from "../../helpers/authApi.js";
+import { ToastContainer } from "react-toastify";
+import { toastSuccess, toastError } from "../../helpers/toastHelper.js";
+import { useEffect } from "react";
 
 
 const initialState = {}
@@ -12,19 +15,43 @@ const initialState = {}
 const SignUpPage = () => {
     const {form, setForm, handleOnChange} = useForm(initialState);
 
+    useEffect(() => {
+  toastSuccess("Toast is working!");
+}, []);
+
+
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         console.log(form);
+        
 
-        const {confirmPassword, ...rest} = form
-        if(confirmPassword!==rest.password) return alert("Password does not match")
-            const result = await signUpNewUserApi(rest)
-        console.log(result);
+        // const {confirmPassword, ...rest} = form
+        // if(confirmPassword!==rest.password) return alert("Password does not match")
+        //     const result = await signUpNewUserApi(rest)
+        // console.log(result);    
+          
 
+        const {confirmPassword, ...rest} = form;
+        if(confirmPassword!==rest.password) {
+           return toastError("Password does not match")
+        }
+    
+         try {
+          const res = await signUpNewUserApi(rest);
+          console.log("API RESPONSE, res")
+          const {status, message} = res.data;
 
+           if(status === "success") {
+            toastSuccess(message);
+           } else {
+            toastError(message|| "something went wrong")
+           }
+         } catch(error) {
+          toastError(error?.response?.data?.message || "something went wrong");
+         }
     }
-
+     
 
 
   return (
@@ -38,11 +65,15 @@ const SignUpPage = () => {
         signUpInputes.map((input)=>(
         <CustomInput key={input.name} {...input} onChange = {handleOnChange}/>))
        }
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit"> 
         Submit
       </Button>
+      <br />
+       <h6 className="text-center">Already have an account? Log In here</h6>
     </Form>
+ 
     </div>
+    <ToastContainer position="top-right" autoClose = {3000} />
     </>
     
   )

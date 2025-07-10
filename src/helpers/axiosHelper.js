@@ -11,6 +11,6 @@ export const apiProcessor = async ({url, method, payload}) => {
     return (response)
    } catch (error) {
     console.log(error);
-    return error.message.data;
+    return error.message || {data: {status: "error", message: "Network error"}};
    }
 };
