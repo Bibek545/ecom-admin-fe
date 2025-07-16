@@ -13,13 +13,7 @@ import { useEffect } from "react";
 const initialState = {}
 
 const SignUpPage = () => {
-    const {form, setForm, handleOnChange} = useForm(initialState);
-
-    useEffect(() => {
-  toastSuccess("Toast is working!");
-}, []);
-
-
+    const {form, setForm, handleOnChange, passwordErrors} = useForm(initialState);
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
@@ -33,24 +27,33 @@ const SignUpPage = () => {
           
 
         const {confirmPassword, ...rest} = form;
-        if(confirmPassword!==rest.password) {
-           return toastError("Password does not match")
-        }
-    
-         try {
-          const res = await signUpNewUserApi(rest);
-          console.log("API RESPONSE, res")
-          const {status, message} = res.data;
+        if(confirmPassword!==rest.password) return alert("Passswod doesnot match") 
+          const result = await signUpNewUserApi(rest);
+        console.log(result);
+}
 
-           if(status === "success") {
-            toastSuccess(message);
-           } else {
-            toastError(message|| "something went wrong")
-           }
-         } catch(error) {
-          toastError(error?.response?.data?.message || "something went wrong");
-         }
-    }
+console.log(passwordErrors);
+       
+
+
+// {
+//            return toastError("Password does not match")
+//         }
+    
+//          try {
+//           const res = await signUpNewUserApi(rest);
+//           console.log("API RESPONSE, res")
+//           const {status, message} = res.data;
+
+//            if(status === "success") {
+//             toastSuccess(message);
+//            } else {
+//             toastError(message|| "something went wrong")
+//            }
+//          } catch(error) {
+//           toastError(error?.response?.data?.message || "something went wrong");
+//          }
+//     }
      
 
 

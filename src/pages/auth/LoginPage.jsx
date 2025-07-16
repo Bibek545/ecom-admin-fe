@@ -5,7 +5,7 @@ import { loginInputs } from "../../assets/customInputs/userLoginInputs";
 import CustomInput from "../../customInput/CustomInput";
 import { loginUserApi } from "../../helpers/authApi";
 import { useForm } from "../../hooks/useForm";
-import { toastError, toastSuccess } from "../../helpers/toastHelper";
+import { toastError, toastSuccess } from "../../helpers/toastHelper.js";
 import { ToastContainer } from "react-toastify";
 
 const initialState = {};

@@ -11,6 +11,7 @@ export const signUpNewUserApi = async (payload)=> {
     url: authApiEP + '/register',
     method: "post",
     payload,
+    showToast: true,
    }
 
    const result = await apiProcessor(obj);
@@ -24,6 +25,7 @@ export const loginUserApi= async (payload) => {
       url: authApiEP + '/login',
       method: "post",
       payload,
+        showToast: true,
 
    }
 
@@ -39,6 +41,7 @@ export const activateUserApi =  async (payload) => {
       url: authApiEP + '/verify-email',
       method: "post",
       payload,
+        showToast: true,
    }
    return await apiProcessor(obj);
 }

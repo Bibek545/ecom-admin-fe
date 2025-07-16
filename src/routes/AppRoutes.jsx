@@ -14,7 +14,7 @@ import ActivateUserPage from "../pages/auth/ActivateUserPage.jsx";
                 <Route path ='/' element = {<DefaultLayout/>}>
                     <Route index element = {<HomePage/>}></Route>
                     <Route path="signup" element = {<SignUpPage/>}></Route>
-                    <Route path="activate-user" element = {<ActivateUserPage />}></Route>
+                    <Route path="verify-email" element = {<ActivateUserPage />}></Route>
                     <Route path="login" element = {<LoginPage/>}></Route>
 
                 </Route>
